@@ -78,7 +78,7 @@ def sms_reply():
     
     respMsg = resp.message(body)
     respMsg.media(imgUrl)
-    resp.message(PIRATE_BAY_URL+msg.replace(" ",'+'))
+    resp.message("Torrent search: "+PIRATE_BAY_URL+msg.replace(" ",'+'))
     return str(resp)
 
 # def translate():
