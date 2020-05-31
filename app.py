@@ -4,6 +4,7 @@ import requests
 
 BASE_URL = "http://www.omdbapi.com/?t="
 API_KEY = "&apikey=751eb215"
+PIRATE_BAY_URL = "https://thepiratebay.org/search.php?q="
 
 app = Flask(__name__)
 
@@ -77,8 +78,7 @@ def sms_reply():
     
     respMsg = resp.message(body)
     respMsg.media(imgUrl)
-    resp.message("Trying multiple messages")
-
+    resp.message(PIRATE_BAY_URL+msg.replace(" ",'+'))
     return str(resp)
 
 # def translate():
