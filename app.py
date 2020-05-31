@@ -65,6 +65,12 @@ def sms_reply():
 
     #getting details of movie
     details = get_movie_info(title)
+    if('Error' in details):
+        body = "Sorry no movie named "+title+" found."
+        respMsg = resp.message(body)
+        return str(resp)
+
+
     body = get_body(title, details)
     imgUrl = details['Poster']
 
