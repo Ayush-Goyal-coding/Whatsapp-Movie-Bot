@@ -50,12 +50,12 @@ def sms_reply():
     print(request)
 
 
-    greetings = ['hello','hi','good']
 
     # Create reply
     resp = MessagingResponse()
     
-    if(any(i in x for i in msg.lower())):
+    greetings = ['hello','hi','good']
+    if(any(i in greetings for i in msg.lower())):
     	msg = "Hi, Type the name of the movie you want to search.The name has to be exact ☹️"
     	respMsg = resp.message(msg)
     	return str(resp)
