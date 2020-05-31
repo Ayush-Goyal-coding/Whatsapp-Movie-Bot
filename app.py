@@ -57,7 +57,7 @@ def sms_reply():
     greetings = ['hello','hi','good']
     msg = msg.lower()
     if(any(i in msg for i in greetings)):
-    	msg = "Hi, Type the name of the movie you want to search.The name has to be exact ☹️"
+    	msg = "Hi, Type the name of the movie you want to search 😁"
     	respMsg = resp.message(msg)
     	return str(resp)
     else:
@@ -77,6 +77,7 @@ def sms_reply():
     
     respMsg = resp.message(body)
     respMsg.media(imgUrl)
+    resp.message("Trying multiple messages")
 
     return str(resp)
 
