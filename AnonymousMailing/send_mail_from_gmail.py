@@ -10,10 +10,10 @@ def input_msg_expected()->str:
     '''
     Users are expectetd to send the message in this format
     '''
-    msg_format = "*Send email\n" \
+    msg_format = "*Send email*l\n" \
                  "<to>\n" \
                  "<subject>\n" \
-                 "<body>*"
+                 "<body>"
     return msg_format
 
 
@@ -37,9 +37,10 @@ def email_alert(subject, body, to):
 
 def __get_details_from_msg(msg:str):
     msgs = msg.split("\n")
+    print(msgs)
     to = msgs[1]
     subject = msgs[2]
-    body = str(msgs[2:])
+    body = msgs[3:]
     return to,subject,body
 def create_msg_response_for_sending_mail(resp, msg):
     """
@@ -59,5 +60,10 @@ def create_msg_response_for_sending_mail(resp, msg):
     return resp
 
 if __name__ == '__main__':
-    email_to_send_mail = ''
-    email_alert(subject="Hey", body="Hello!", to=email_to_send_mail)
+    # email_to_send_mail = ''
+    # email_alert(subject="Hey", body="Hello!", to=email_to_send_mail)
+    msg = '''Send email
+goyal.ayush55@gmail.com
+Hello
+This is a test'''
+    print(__get_details_from_msg(msg))
