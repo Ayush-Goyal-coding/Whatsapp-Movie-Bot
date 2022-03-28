@@ -24,12 +24,11 @@ def sms_reply():
     # Fetch the message
     msg = request.form.get('Body')
     print(request)
-    greetings = ['hello', 'hi', 'good']
     msg = msg.lower()
     print("message recieved: ",msg)
 
 
-    if any(i in msg for i in greetings):
+    if msg=="hi" or msg=="hello":
         # Create reply
         resp = MessagingResponse()
         msg = "Hi, Type the name of the movie you want to search 😁 or \n" \
