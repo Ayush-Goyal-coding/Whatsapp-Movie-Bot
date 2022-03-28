@@ -1,10 +1,11 @@
 # API client library
 import googleapiclient.discovery
-
+import os
 # API information
 api_service_name = "youtube"
 api_version = "v3"
-DEVELOPER_KEY = 'AIzaSyAksptMU8oYDx518a9n-mKCO2RBoXz3ywY'
+DEVELOPER_KEY = os.environ['YOUTUBE_SEARCH_KEY']
+
 BASE_YOUTUBE_URL = "https://youtu.be/"
 
 # API client
