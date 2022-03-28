@@ -46,4 +46,4 @@ def __get_title_and_link(msg):
 
 def get_msg_with_youtube_details(msg):
     link, title = __get_title_and_link(msg)
-    return "YouTube Search: " + link + "\n" + "*Vid Title:* " + title
+    return "YouTube Search: " + link  ## title comes in WA anyways
