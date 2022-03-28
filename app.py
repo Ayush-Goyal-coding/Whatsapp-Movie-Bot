@@ -24,9 +24,11 @@ def sms_reply():
     # Fetch the message
     msg = request.form.get('Body')
     print(request)
-
     greetings = ['hello', 'hi', 'good']
     msg = msg.lower()
+    print("message recieved: ",msg)
+
+
     if any(i in msg for i in greetings):
         # Create reply
         resp = MessagingResponse()
