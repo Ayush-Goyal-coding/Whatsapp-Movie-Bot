@@ -38,6 +38,7 @@ def sms_reply():
         respMsg = resp.message(msg)
         return str(resp)
     elif "send email" in msg:
+        print("inside elif")
         resp = create_msg_response_for_sending_mail(msg)
     else:
         resp = create_msg_response_for_movie_rating(msg)

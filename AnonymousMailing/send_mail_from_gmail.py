@@ -43,13 +43,16 @@ def __get_details_from_msg(msg:str):
     subject = msgs[2]
     body = msgs[3:]
     return to,subject,body
+
+
 def create_msg_response_for_sending_mail(resp, msg):
     """
     This recieves the msg and sends the mails. If mail sending is sucessful, it sends a response Done
     """
     ## Get the details form message
+    print("inside create")
     to, subject, body = __get_details_from_msg(msg)
-
+    print(f"{to=},{subject=},{body=}")
     # Create reply
     resp = MessagingResponse()
 
@@ -58,6 +61,7 @@ def create_msg_response_for_sending_mail(resp, msg):
         resp.message("Done 😄")
     else:
         resp.message("Not Successful 😢")
+    print("Exiting mail function")
     return resp
 
 if __name__ == '__main__':
