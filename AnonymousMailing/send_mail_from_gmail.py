@@ -41,7 +41,7 @@ def __get_details_from_msg(msg:str):
     print(msgs)
     to = msgs[1]
     subject = msgs[2]
-    body = msgs[3:]
+    body = msgs[3]
     return to,subject,body
 
 
