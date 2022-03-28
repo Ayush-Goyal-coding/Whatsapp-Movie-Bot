@@ -1,9 +1,11 @@
 import requests
 from twilio.twiml.messaging_response import MessagingResponse
 from MovieInfo.pirate_bay_url import get_msg_with_piratebay_url
+from MovieInfo.youtube_search import get_msg_with_youtube_details
 
 BASE_URL = "http://www.omdbapi.com/?t="
 API_KEY = "&apikey=751eb215"
+
 
 def get_ratings(details):
     body = "*Ratings* : \n"
@@ -55,6 +57,7 @@ def create_msg_response_for_movie_rating(msg):
 
     respMsg = resp.message(body)
     respMsg.media(imgUrl)
-    ## we can parallelise both the messages to improve performance though it is not needed
+    # we can parallelise both the messages to improve performance though it is not needed
     resp.message(get_msg_with_piratebay_url(msg))
+    resp.message(get_msg_with_youtube_details(msg))
     return resp

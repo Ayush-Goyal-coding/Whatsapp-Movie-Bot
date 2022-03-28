@@ -1,5 +1,4 @@
 twilio==6.41.0
-jinja2
 Flask==1.0.2
-gunicorn
-beautifulsoup4
+beautifulsoup4~=4.10.0
+google-api-python-client==2.42.0

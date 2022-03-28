@@ -6,10 +6,11 @@ from twilio.twiml.messaging_response import MessagingResponse
 FROM_EMAIL = 'bot.by.fun@gmail.com'
 pwd = os.environ['GMAIL_APP_PASSWORD_BOT']  ## replace this by your app password
 
-def input_msg_expected()->str:
-    '''
+
+def input_msg_expected() -> str:
+    """
     Users are expectetd to send the message in this format
-    '''
+    """
     msg_format = "*Send email*\n" \
                  "<to>\n" \
                  "<subject>\n" \
@@ -18,10 +19,10 @@ def input_msg_expected()->str:
 
 
 def email_alert(subject, body, to):
-    '''
+    """
     Send the email and
     Returns true if there is no error
-    '''
+    """
     emsg = EmailMessage()
     emsg.set_content(body)
     emsg["subject"] = subject
@@ -35,14 +36,15 @@ def email_alert(subject, body, to):
     server.quit()
     return True
 
-def __get_details_from_msg(msg:str):
+
+def __get_details_from_msg(msg: str):
     print(msg)
     msgs = msg.split("\n")
     print(msgs)
     to = msgs[1]
     subject = msgs[2]
     body = msgs[3]
-    return to,subject,body
+    return to, subject, body
 
 
 def create_msg_response_for_sending_mail(msg):
@@ -52,7 +54,7 @@ def create_msg_response_for_sending_mail(msg):
     ## Get the details form message
     print("inside create")
     to, subject, body = __get_details_from_msg(msg)
-    print("Printing to,su,bo: ",to,subject,body)
+    print("Printing to,su,bo: ", to, subject, body)
     # Create reply
     resp = MessagingResponse()
 
@@ -63,6 +65,7 @@ def create_msg_response_for_sending_mail(msg):
         resp.message("Not Successful 😢")
     print("Exiting mail function")
     return resp
+
 
 if __name__ == '__main__':
     # email_to_send_mail = ''
