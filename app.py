@@ -1,7 +1,9 @@
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
-from MovieInfo.movie_rate import get_movie_info,get_body
+
+from MovieInfo.movie_rate import create_msg_response_for_movie_rating
 from MovieInfo.pirate_bay_url import get_msg_with_piratebay_url,get_unblocked_urls_for_pirate_bay
+from AnonymousMailing.send_mail_from_gmail import input_msg_expected, create_msg_response_for_sending_mail
 app = Flask(__name__)
 
 @app.route("/")
@@ -23,31 +25,21 @@ def sms_reply():
     msg = request.form.get('Body')
     print(request)
 
-    # Create reply
-    resp = MessagingResponse()
-
     greetings = ['hello', 'hi', 'good']
     msg = msg.lower()
     if any(i in msg for i in greetings):
-        msg = "Hi, Type the name of the movie you want to search 😁"
+        # Create reply
+        resp = MessagingResponse()
+        msg = "Hi, Type the name of the movie you want to search 😁 or \n" \
+              "Send Anonymous mail by typing the following in the same text \n" \
+              + input_msg_expected()
         respMsg = resp.message(msg)
         return str(resp)
+    elif "send email" in msg:
+        resp = create_msg_response_for_sending_mail(msg)
     else:
-        title = msg.lower()
+        resp = create_msg_response_for_movie_rating(msg)
 
-    # getting details of movie
-    details = get_movie_info(title)
-    if 'Error' in details:
-        body = "Sorry no movie named " + title + " found."
-        respMsg = resp.message(body)
-        return str(resp)
-
-    body = get_body(title, details)
-    imgUrl = details['Poster']
-
-    respMsg = resp.message(body)
-    respMsg.media(imgUrl)
-    resp.message(get_msg_with_piratebay_url(msg))
     return str(resp)
 
 
