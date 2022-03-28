@@ -52,7 +52,7 @@ def create_msg_response_for_sending_mail(resp, msg):
     ## Get the details form message
     print("inside create")
     to, subject, body = __get_details_from_msg(msg)
-    print(f"{to=},{subject=},{body=}")
+    print("Printing to,su,bo: ",to,subject,body)
     # Create reply
     resp = MessagingResponse()
 
