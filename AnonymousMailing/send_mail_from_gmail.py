@@ -45,7 +45,7 @@ def __get_details_from_msg(msg:str):
     return to,subject,body
 
 
-def create_msg_response_for_sending_mail(resp, msg):
+def create_msg_response_for_sending_mail(msg):
     """
     This recieves the msg and sends the mails. If mail sending is sucessful, it sends a response Done
     """
