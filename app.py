@@ -1,50 +1,16 @@
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
-import requests
-
-BASE_URL = "http://www.omdbapi.com/?t="
-API_KEY = "&apikey=751eb215"
-PIRATE_BAY_URL = "https://thepiratebay.org/search.php?q="
-
+from MovieInfo.movie_rate import get_movie_info,get_body
+from MovieInfo.pirate_bay_url import get_msg_with_piratebay_url,get_unblocked_urls_for_pirate_bay
 app = Flask(__name__)
-
-
-def get_movie_info(title):
-    title = title.replace(" ", '+')
-    url = BASE_URL + title + API_KEY
-    r = requests.get(url)
-    return r.json()
-
-
-def get_ratings(details):
-    body = "*Ratings* : \n"
-    for i in details['Ratings']:
-        body += i['Source'] + " : " + i['Value'] + '\n'
-    return body
-
-
-def format_util(x, details):
-    return "*" + x + "* : " + details[x] + '\n'
-
-
-def get_body(title, details):
-    if ('Error' in details):
-        return "Sorry no movie named " + title + " found."
-    else:
-        body = ("Here is your Movie details\n" +
-                format_util('Title', details) +
-                format_util('Runtime', details) +
-                format_util('Genre', details) +
-                format_util('Released', details) +
-                get_ratings(details)
-                )
-
-    return body
-
 
 @app.route("/")
 def hello():
     return "Hello, World!"
+
+@app.route("/pirate_bay_url/all")
+def pirate_bay_urls():
+    return {"urls": get_unblocked_urls_for_pirate_bay()}
 
 
 @app.route("/sms", methods=['POST'])
@@ -60,7 +26,7 @@ def sms_reply():
 
     greetings = ['hello', 'hi', 'good']
     msg = msg.lower()
-    if (any(i in msg for i in greetings)):
+    if any(i in msg for i in greetings):
         msg = "Hi, Type the name of the movie you want to search 😁"
         respMsg = resp.message(msg)
         return str(resp)
@@ -69,7 +35,7 @@ def sms_reply():
 
     # getting details of movie
     details = get_movie_info(title)
-    if ('Error' in details):
+    if 'Error' in details:
         body = "Sorry no movie named " + title + " found."
         respMsg = resp.message(body)
         return str(resp)
@@ -79,7 +45,7 @@ def sms_reply():
 
     respMsg = resp.message(body)
     respMsg.media(imgUrl)
-    resp.message("Torrent search: " + PIRATE_BAY_URL + msg.replace(" ", '+'))
+    resp.message(get_msg_with_piratebay_url(msg))
     return str(resp)
 
 
