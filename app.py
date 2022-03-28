@@ -10,12 +10,14 @@ def hello():
 
 @app.route("/pirate_bay_url/all")
 def pirate_bay_urls():
-    return {"urls": get_unblocked_urls_for_pirate_bay()}
+    return str({"urls": get_unblocked_urls_for_pirate_bay()})
 
 
 @app.route("/sms", methods=['POST'])
 def sms_reply():
-    """Respond to incoming calls with a simple text message."""
+    """Respond to incoming calls with a simple text message.
+    Ref: https://www.twilio.com/docs/sms/tutorials/how-to-receive-and-reply-python
+    """
 
     # Fetch the message
     msg = request.form.get('Body')
