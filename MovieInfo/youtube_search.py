@@ -4,8 +4,11 @@ import os
 # API information
 api_service_name = "youtube"
 api_version = "v3"
-DEVELOPER_KEY = os.environ['YOUTUBE_SEARCH_KEY']
 
+## Delete if this is not needed. 
+## Get the API key from https://console.cloud.google.com/apis/credentials
+
+DEVELOPER_KEY = os.environ['YOUTUBE_SEARCH_KEY']
 BASE_YOUTUBE_URL = "https://youtu.be/"
 
 # API client

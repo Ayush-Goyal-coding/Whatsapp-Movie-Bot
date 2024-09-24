@@ -3,3 +3,4 @@ Flask==2.3.2
 beautifulsoup4~=4.10.0
 google-api-python-client==2.42.0
 gunicorn
+werkzeug==3.0.3
