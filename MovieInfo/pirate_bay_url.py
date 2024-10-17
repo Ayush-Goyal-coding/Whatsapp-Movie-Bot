@@ -6,8 +6,9 @@ TODO: do a status check if url is up or not (for india maybe?)
 from bs4 import BeautifulSoup
 import requests
 
-PIRATE_BAY_PROXY_URL = "https://proxybay.github.io/"
-PIRATE_BAY_URLS = None
+PIRATE_BAY_PROXY_URL = "https://proxybay.github.io/" ## this site is down, need to find another site to get pirate info from
+# PIRATE_BAY_PROXY_URL = "https://github.com/okeyproxy2/Pirate-Bay-Proxy-Sites-List-Updated-Apr-2024"
+PIRATE_BAY_URLS = ["https://tpirbay.xyz/", "https://tpirbay.top/","https://tpirbay.site/"]  ## Hard coding for now. 
 
 
 def __get_url_from_one_row(row):
