@@ -4,6 +4,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 from MovieInfo.movie_rate import create_msg_response_for_movie_rating
 from MovieInfo.pirate_bay_url import get_msg_with_piratebay_url,get_unblocked_urls_for_pirate_bay
 from AnonymousMailing.send_mail_from_gmail import input_msg_expected, create_msg_response_for_sending_mail
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -49,4 +50,4 @@ def sms_reply():
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(host='127.0.0.1', port=8080)

@@ -1,3 +1,4 @@
 vn/
 *.pyc
 *.ipynb
+env_variables.yaml
