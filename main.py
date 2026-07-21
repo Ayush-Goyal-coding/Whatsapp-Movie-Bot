@@ -26,7 +26,7 @@ def sms_reply():
     msg = request.form.get('Body')
     print(request)
     msg = msg.lower()
-    print("message recieved: ",msg)
+    print("message received: ",msg)
 
 
     if msg=="hi" or msg=="hello":
